@@ -121,15 +121,41 @@ def print_hand(hand: list[Card]):
 def print_board():
     os.system('cls' if os.name == 'nt' else 'clear')
     print("-=# [Ultimate Blackjack] #=-\n")
-    print(f"Current bet - {'{0:.2f}'.format(bet)}, You have ${'{0:.2f}'.format(money)}\n")
+    print(f"Current bet - ${'{0:.2f}'.format(bet)}, You have ${'{0:.2f}'.format(money)}\n")
     print("[dealer's hand]")
     print_hand(dealer_hand())
     print("[your hand]")
     print_hand(my_hand())
 
-#fake loading sequence for immersion
+def title():
+    print("""                                                                                                                                                                            
+     ##### /    ## ###                                                                     ##### ## ###                          /                                 /        
+  ######  /  #####  ###             #                                                   ######  /##  ###                       #/        #                       #/         
+ /#   /  /     ##### ##     #      ###                                #                /#   /  / ##   ##                       ##       ###                      ##         
+/    /  ##     # ##  ##    ##       #                                ##               /    /  /  ##   ##                       ##        #                       ##         
+    /  ###     #     ##    ##                                        ##                   /  /   /    ##                       ##                                ##         
+   ##   ##     #     ##  ######## ###   ### /### /###     /###     ######## /##          ## ##  /     ##      /###     /###    ##  /## ###      /###     /###    ##  /##    
+   ##   ##     #     ## ########   ###   ##/ ###/ /##  / / ###  / ######## / ###         ## ## /      ##     / ###  / / ###  / ## / ### ###    / ###  / / ###  / ## / ###   
+   ##   ##     #     ##    ##       ##    ##  ###/ ###/ /   ###/     ##   /   ###        ## ##/       ##    /   ###/ /   ###/  ##/   /   ##   /   ###/ /   ###/  ##/   /    
+   ##   ##     #     ##    ##       ##    ##   ##   ## ##    ##      ##  ##    ###       ## ## ###    ##   ##    ## ##         ##   /    /   ##    ## ##         ##   /     
+   ##   ##     #     ##    ##       ##    ##   ##   ## ##    ##      ##  ########        ## ##   ###  ##   ##    ## ##         ##  /    /    ##    ## ##         ##  /      
+    ##  ##     #     ##    ##       ##    ##   ##   ## ##    ##      ##  #######         #  ##     ## ##   ##    ## ##         ## ##   ###   ##    ## ##         ## ##      
+     ## #      #     ##    ##       ##    ##   ##   ## ##    ##      ##  ##                 /      ## ##   ##    ## ##         ######   ###  ##    ## ##         ######     
+      ###      /     ##    ##       ##    ##   ##   ## ##    /#      ##  ####    /      /##/     ###  ##   ##    /# ###     /  ##  ###   ### ##    /# ###     /  ##  ###    
+       #######/      ### / ##       ### / ###  ###  ### ####/ ##     ##   ######/      /  ########    ### / ####/ ## ######/   ##   ### / ### ####/ ## ######/   ##   ### / 
+         ####         ##/   ##       ##/   ###  ###  ### ###   ##     ##   #####      /     ####       ##/   ###   ## #####     ##   ##/   ##  ###   ## #####     ##   ##/  
+                                                                                      #                                                    ##                               
+                                                                                       ##                                                  /                                
+                                                                                                                                          /                                 
+                                                                                                                                         /                                  """)
+
+#title screen for immersion
 os.system('cls' if os.name == 'nt' else 'clear')
-print("-=# [Ultimate Blackjack] #=-\n")
+title()
+print("Press [ENTER] to begin")
+input()
+
+#fake loading sequence for even more immersion
 print("loading", end="", flush=True)
 time.sleep(1)
 print(".", end="", flush=True)
@@ -176,7 +202,7 @@ while True:
         print_board()
         time.sleep(1)
 
-    #win conditions and payout
+    #win conditions and payout (for immersion)
     if my_hand.sum() == dealer_hand.sum() or (dealer_hand.sum() > 21 and my_hand.sum() > 21):
         print(f"you tied!\nyour sum: {my_hand.sum()}\ndealer sum: {dealer_hand.sum()}")
         money += bet
