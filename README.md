@@ -16,7 +16,8 @@ setting up is incredibly easy, but for those who lack computer literacy here are
 
 ## Changelog
 ### 1.1:
-- added new game feature so game doesn't have to be restarted every round
+- added 'new game' feature so game doesn't have to be restarted every round
 - added a betting system so players can feel more immersed in the true gambling experience
+- added title screen (note: make sure your terminal is zoomed out a little bit before running so that the title screen will work properly)
 ### 1.0:
 - initial release
