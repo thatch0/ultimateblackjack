@@ -9,9 +9,18 @@ cardvalues = {}
 #dont forget to run this, dumbass
 #note: i forgot
 def initialize():
+    global bet
+    global money
     os.system('cls' if os.name == 'nt' else 'clear')
     for i in range(1, CARDS+1):
         cardvalues.update({i: {1: True, 2: True, 3: True, 4: False}})
+    while True:
+        try:
+            print("-=# [Ultimate Blackjack] #=-\n")
+            bet = float(input(f"Please enter your bet.\nyou have ${'{0:.2f}'.format(money)}\n>>> "))
+            break
+        except:
+            os.system('cls' if os.name == 'nt' else 'clear')
 
 #setup and stuff
 class Card:
@@ -112,6 +121,7 @@ def print_hand(hand: list[Card]):
 def print_board():
     os.system('cls' if os.name == 'nt' else 'clear')
     print("-=# [Ultimate Blackjack] #=-\n")
+    print(f"Current bet - {'{0:.2f}'.format(bet)}, You have ${'{0:.2f}'.format(money)}\n")
     print("[dealer's hand]")
     print_hand(dealer_hand())
     print("[your hand]")
@@ -131,7 +141,11 @@ time.sleep(1)
 
 print("loading finished! your game will start shortly...", flush=True)
 time.sleep(2)
+
 # actual game
+money = 2500
+bet = 0
+
 while True:
     initialize()
 
@@ -162,17 +176,20 @@ while True:
         print_board()
         time.sleep(1)
 
-    #win conditions
+    #win conditions and payout
     if my_hand.sum() == dealer_hand.sum() or (dealer_hand.sum() > 21 and my_hand.sum() > 21):
         print(f"you tied!\nyour sum: {my_hand.sum()}\ndealer sum: {dealer_hand.sum()}")
+        money += bet
     elif (my_hand.sum() > dealer_hand.sum()  or dealer_hand.sum() > 21) and my_hand.sum() <= 21:
         print(f"you won!\nyour sum: {my_hand.sum()}\ndealer sum: {dealer_hand.sum()}")
     else:
         print(f"you lost!\nyour sum: {my_hand.sum()}\ndealer sum: {dealer_hand.sum()}")
+        money -= bet
 
-    #please work
+    #tell them how much money they have
+    print(f"you now have ${'{0:.2f}'.format(money)}")
 
     #new game logic
     newgame = input("\nnew game? [y / n]")
-    if newgame.lower() == "n":
+    if newgame.lower() == "n" or money <= 0:
         break
