@@ -1,5 +1,6 @@
 import random, os, time
 
+os.system("title Ultimate Blackjack")
 CARDS = 13
 # 1 less than the actual ace value for bugfixing reasons
 ACEVALUE = 10
@@ -102,7 +103,10 @@ class Hand:
         total = 0
         ace = False
         for c in self.cards:
-            total += c.value
+            if c.value <= 10:
+                total += c.value
+            else:
+                total += 10
             if c.value == 1:
                 ace = True
         if ace and total + ACEVALUE <= BUSTVALUE:
@@ -205,9 +209,9 @@ while True:
     #win conditions and payout (for immersion)
     if my_hand.sum() == dealer_hand.sum() or (dealer_hand.sum() > 21 and my_hand.sum() > 21):
         print(f"you tied!\nyour sum: {my_hand.sum()}\ndealer sum: {dealer_hand.sum()}")
-        money += bet
     elif (my_hand.sum() > dealer_hand.sum()  or dealer_hand.sum() > 21) and my_hand.sum() <= 21:
         print(f"you won!\nyour sum: {my_hand.sum()}\ndealer sum: {dealer_hand.sum()}")
+        money += bet
     else:
         print(f"you lost!\nyour sum: {my_hand.sum()}\ndealer sum: {dealer_hand.sum()}")
         money -= bet
