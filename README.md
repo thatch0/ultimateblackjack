@@ -1,4 +1,4 @@
-# ultimateblackjack
+# Ultimate Black Jack v1.1
 a version of blackjack that is playable in the console. I plan to add new features, such as betting and different modes
 
 ## How to Set Up
