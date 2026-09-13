@@ -13,3 +13,9 @@ setting up is incredibly easy, but for those who lack computer literacy here are
 - if you use Linux and you are genuinely stuck on how to run this, consider switching operating systems
 ### Mac
 - lol idk
+
+## Changelog
+### 1.1:
+- added new game feature so game doesn't have to be restarted every round
+### 1.0:
+- initial release
