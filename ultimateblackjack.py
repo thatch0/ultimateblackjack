@@ -132,42 +132,47 @@ time.sleep(1)
 print("loading finished! your game will start shortly...", flush=True)
 time.sleep(2)
 # actual game
-
-initialize()
-
-dealer_hand = Hand(True)
-my_hand = Hand()
-
 while True:
-    print_board()
+    initialize()
 
-    #check for bust or blackjack
-    if my_hand.sum() >= 21:
-        break
+    dealer_hand = Hand(True)
+    my_hand = Hand()
 
-    #idfk
-    move = input("would you like to [h]it or [s]tand\n>>> ")
-    match move:
-        case "h":
-            my_hand.draw_new_card()
-        case "s":
+    while True:
+        print_board()
+
+        #check for bust or blackjack
+        if my_hand.sum() >= 21:
             break
 
-#dealer stuff + visual coolness
-dealer_hand.cards[1].unhide()
-print_board()
-time.sleep(1)
-while dealer_hand.sum() < 17:
-    dealer_hand.draw_new_card()
+        #idfk
+        move = input("would you like to [h]it or [s]tand\n>>> ")
+        match move.lower():
+            case "h":
+                my_hand.draw_new_card()
+            case "s":
+                break
+
+    #dealer stuff + visual coolness
+    dealer_hand.cards[1].unhide()
     print_board()
     time.sleep(1)
+    while dealer_hand.sum() < 17:
+        dealer_hand.draw_new_card()
+        print_board()
+        time.sleep(1)
 
-#win conditions
-if my_hand.sum() == dealer_hand.sum() or (dealer_hand.sum() > 21 and my_hand.sum() > 21):
-    print(f"you tied!\nyour sum: {my_hand.sum()}\ndealer sum: {dealer_hand.sum()}")
-elif (my_hand.sum() > dealer_hand.sum()  or dealer_hand.sum() > 21) and my_hand.sum() <= 21:
-    print(f"you won!\nyour sum: {my_hand.sum()}\ndealer sum: {dealer_hand.sum()}")
-else:
-    print(f"you lost!\nyour sum: {my_hand.sum()}\ndealer sum: {dealer_hand.sum()}")
+    #win conditions
+    if my_hand.sum() == dealer_hand.sum() or (dealer_hand.sum() > 21 and my_hand.sum() > 21):
+        print(f"you tied!\nyour sum: {my_hand.sum()}\ndealer sum: {dealer_hand.sum()}")
+    elif (my_hand.sum() > dealer_hand.sum()  or dealer_hand.sum() > 21) and my_hand.sum() <= 21:
+        print(f"you won!\nyour sum: {my_hand.sum()}\ndealer sum: {dealer_hand.sum()}")
+    else:
+        print(f"you lost!\nyour sum: {my_hand.sum()}\ndealer sum: {dealer_hand.sum()}")
 
-#please work
+    #please work
+
+    #new game logic
+    newgame = input("\nnew game? [y / n]")
+    if newgame.lower() == "n":
+        break
